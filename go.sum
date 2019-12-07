@@ -64,6 +64,8 @@ github.com/labstack/gommon v0.3.0 h1:JEeO0bvc78PKdyHxloTKiF8BD5iGrH8T6MSeGvSgob0
 github.com/labstack/gommon v0.3.0/go.mod h1:MULnywXg0yavhxWKc+lOruYdAhDwPK9wf0OL7NoOu+k=
 github.com/letanthang/nc_student v0.0.0-20191130084330-53c0f9f0e822 h1:s9VTCddaINrgn9Ohg/gbLJIJPVzpSylAUNfhpZv8REI=
 github.com/letanthang/nc_student v0.0.0-20191130084330-53c0f9f0e822/go.mod h1:vYiiwOZzXFOOnXr9QizxBNEk2t7s4tmAr0xAvOED3II=
+github.com/letanthang/nc_student v0.0.0-20191207073511-e0467e2dcae8 h1:wEwGKSv7U9fA1/27cIsjkNV4YC7mc+tntO9ZrQsSNo8=
+github.com/letanthang/nc_student v0.0.0-20191207073511-e0467e2dcae8/go.mod h1:Zr2CJkgnrIVDaf8vltSs9Vuo95CLVk3WxtEtg0bDKX0=
 github.com/magiconair/properties v1.8.1 h1:ZC2Vc7/ZFkGmsVC9KvOjumD+G5lXy2RtTKyzRKO2BQ4=
 github.com/magiconair/properties v1.8.1/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
 github.com/mattn/go-colorable v0.1.2 h1:/bC9yWikZXAL9uJdulbSfyVNIR3n3trXl+v8+1sx8mU=

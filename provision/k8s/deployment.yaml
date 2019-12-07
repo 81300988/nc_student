@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hahoang-student
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hahoang
+  template:
+    metadata:
+      labels:
+        app: hahoang
+    spec:
+      containers:
+        - name: contain
+          image: hoanghaihadocker/nc_student
+          ports:
+            - containerPort: 9090
+              name: web
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "50m"
+            limits:
+              memory: "75Mi"
+              cpu: "75m"
+

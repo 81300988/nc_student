@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hahoang-student
+  labels:
+    app: student
+spec:
+  containers:
+  - image: hoanghaihadocker/nc_student
+    name: cont
+    ports:
+    - containerPort: 9090
+      name: web
+    resources:
+      requests:
+        memory: "60Mi"
+        cpu: "50m"
+      limits:
+        memory: "75Mi"
+        cpu: "75m"
