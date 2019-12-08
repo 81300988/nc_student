@@ -9,8 +9,8 @@ import (
 
 func GetAllStudent() ([]Student, error) {
 	var students []Student
-	connection := Client.Database("homework2").Collection("student")
-	cur, err := connection.Find(context.TODO(), bson.M{})
+	collection := Client.Database("homework2").Collection("student")
+	cur, err := collection.Find(context.TODO(), bson.M{})
 	if err != nil {
 		log.Fatal(err)
 	}
