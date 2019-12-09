@@ -35,3 +35,17 @@ func UpdateStudent(c echo.Context) error {
 	return c.JSON(http.StatusOK, res)
 
 }
+
+func DeleteOneStudent(c echo.Context) error {
+	var student db.Student
+	if err := c.Bind(&student); err != nil {
+		return c.JSON(http.StatusBadRequest, db.Error{Code: http.StatusBadRequest, Msg: "bad request"})
+	}
+	res, err := db.DeleteOneStudent(&student)
+	if err != nil {
+		log.Printf("update error :%v", err)
+		return c.JSON(http.StatusBadRequest, db.Error{Code: http.StatusBadRequest, Msg: "bad request"})
+	}
+
+	return c.JSON(http.StatusOK, res)
+}

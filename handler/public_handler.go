@@ -19,3 +19,13 @@ func GetAllStudents(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, students)
 }
+
+func GetOneStudent(c echo.Context) error {
+	id := c.QueryParam("id")
+	student, err := db.GetOneStudent(id)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, db.Error{Code: http.StatusBadRequest, Msg: "bad request"})
+	}
+
+	return c.JSON(http.StatusOK, student)
+}

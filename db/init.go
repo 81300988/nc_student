@@ -19,13 +19,12 @@ func init() {
 
 func connect() {
 	client, err := mongo.NewClient(options.Client().ApplyURI(config.Config.Mongo.Uri))
-	if err != nil {
-		log.Fatalf("connect error :%v", err)
-	}
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 	ctx, _ = context.WithTimeout(context.Background(), 2*time.Second)
 	err = client.Ping(ctx, readpref.Primary())
-
+	if err != nil {
+		log.Fatalf("connect error :%v", err)
+	}
 	Client = client
 }
