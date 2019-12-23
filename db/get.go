@@ -58,3 +58,39 @@ func GetOneStudent(id string) (interface{}, error) {
 	}
 	return student, nil
 }
+func FindNameStartsWith(student *Student) ([]Student, error) {
+	var students []Student
+	keyWord := "^" + student.FirstName
+	collection := Client.Database("homework2").Collection("student")
+	cur, err2 := collection.Find(context.TODO(), bson.M{
+		"FirstName": primitive.Regex{
+			Pattern: keyWord,
+			Options: "i",
+		},
+	})
+	if err2 != nil {
+		return nil, err2
+	}
+	for cur.Next(context.TODO()) {
+
+		// create a value into which the single document can be decoded
+		var elem Student
+		err := cur.Decode(&elem)
+
+		if err != nil {
+			log.Fatal(err)
+			return nil, err
+		}
+
+		students = append(students, elem)
+	}
+
+	if err := cur.Err(); err != nil {
+		log.Fatal(err)
+		return nil, err
+	}
+
+	// Close the cursor once finished
+	defer cur.Close(context.TODO())
+	return students, nil
+}

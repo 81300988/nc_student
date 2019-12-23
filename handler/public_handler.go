@@ -20,6 +20,19 @@ func GetAllStudents(c echo.Context) error {
 	return c.JSON(http.StatusOK, students)
 }
 
+func GetAllStudentsWithKeyword(c echo.Context) error {
+	var student db.Student
+	if err := c.Bind(&student); err != nil {
+		return c.JSON(http.StatusBadRequest, db.Error{Code: http.StatusBadRequest, Msg: "bad request"})
+	}
+	students, err2 := db.FindNameStartsWith(&student)
+	if err2 != nil {
+		return c.JSON(http.StatusBadRequest, db.Error{Code: http.StatusBadRequest, Msg: "bad request"})
+	}
+
+	return c.JSON(http.StatusOK, students)
+}
+
 func GetOneStudent(c echo.Context) error {
 	id := c.QueryParam("id")
 	student, err := db.GetOneStudent(id)
