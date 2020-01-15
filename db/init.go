@@ -13,6 +13,11 @@ import (
 
 var Client *mongo.Client
 
+const (
+	DbName  = "homework2"
+	ColName = "student"
+)
+
 func init() {
 	connect()
 }

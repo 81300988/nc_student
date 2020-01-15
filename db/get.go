@@ -3,34 +3,25 @@ package database
 import (
 	"context"
 	"fmt"
-
-	"log"
+	"reflect"
+	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"gopkg.in/mgo.v2/bson"
+	"log"
+	"nc_student.com/v1/model"
 )
 
-func GetAllStudent() ([]Student, error) {
-	var students []Student
-	collection := Client.Database("homework2").Collection("student")
-	cur, err := collection.Find(context.TODO(), bson.M{})
+func GetAllStudent() ([]model.Student, error) {
+	var students []model.Student
+	collection := Client.Database(DbName).Collection(ColName)
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	cur, err := collection.Find(ctx, bson.M{})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for cur.Next(context.TODO()) {
-
-		// create a value into which the single document can be decoded
-		var elem Student
-		err := cur.Decode(&elem)
-
-		if err != nil {
-			log.Fatal(err)
-			return nil, err
-		}
-
-		students = append(students, elem)
-	}
+	cur.All(ctx, &students)
 
 	if err := cur.Err(); err != nil {
 		log.Fatal(err)
@@ -38,12 +29,12 @@ func GetAllStudent() ([]Student, error) {
 	}
 
 	// Close the cursor once finished
-	defer cur.Close(context.TODO())
+	defer cur.Close(ctx)
 	return students, nil
 }
 
-func GetOneStudent(id string) (interface{}, error) {
-	var student Student
+func GetStudentbyID(id string) (interface{}, error) {
+	var student model.Student
 	collection := Client.Database("homework2").Collection("student")
 	_id, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
@@ -58,32 +49,33 @@ func GetOneStudent(id string) (interface{}, error) {
 	}
 	return student, nil
 }
-func FindNameStartsWith(student *Student) ([]Student, error) {
-	var students []Student
-	keyWord := "^" + student.FirstName
+
+func FindNameStartsWith(student *model.Student) ([]model.Student, error) {
+	var students []model.Student
+	// var filter bson.D
+	var filter []bson.M
+	v := reflect.ValueOf(*student)
+	typeOfS := v.Type()
+	fmt.Println(v.NumField())
+	for i := 0; i < v.NumField(); i++ {
+		fmt.Printf("Field: %s\tValue: %v\n", typeOfS.Field(i).Name, v.Field(i).Interface())
+		if fieldValue := fmt.Sprintf("%v", v.Field(i).Interface()); fieldValue != "" && fieldValue != "0" && typeOfS.Field(i).Name != "ID" {
+			filter = append(filter, bson.M{
+				typeOfS.Field(i).Name: primitive.Regex{
+					Pattern: "^" + fieldValue,
+					Options: "i",
+				},
+			})
+		}
+	}
+	//keyWord := student.FirstName
 	collection := Client.Database("homework2").Collection("student")
-	cur, err2 := collection.Find(context.TODO(), bson.M{
-		"FirstName": primitive.Regex{
-			Pattern: keyWord,
-			Options: "i",
-		},
-	})
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	cur, err2 := collection.Find(ctx, bson.M{"$and": filter})
 	if err2 != nil {
 		return nil, err2
 	}
-	for cur.Next(context.TODO()) {
-
-		// create a value into which the single document can be decoded
-		var elem Student
-		err := cur.Decode(&elem)
-
-		if err != nil {
-			log.Fatal(err)
-			return nil, err
-		}
-
-		students = append(students, elem)
-	}
+	cur.All(ctx, &students)
 
 	if err := cur.Err(); err != nil {
 		log.Fatal(err)
@@ -91,6 +83,6 @@ func FindNameStartsWith(student *Student) ([]Student, error) {
 	}
 
 	// Close the cursor once finished
-	defer cur.Close(context.TODO())
+	defer cur.Close(ctx)
 	return students, nil
 }

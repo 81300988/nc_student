@@ -3,7 +3,9 @@ module nc_student.com/v1
 go 1.13
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gorilla/mux v1.7.3 // indirect
+	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/echo/v4 v4.1.11
 	github.com/letanthang/nc_student v0.0.0-20191207073511-e0467e2dcae8
 	github.com/mongodb/mongo-go-driver v1.1.3
