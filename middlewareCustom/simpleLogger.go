@@ -12,7 +12,7 @@ type Customlogger struct {
 }
 
 func (p Customlogger) Write(data []byte) (n int, err error) {
-	f, err := os.OpenFile("D:/GoNordic/go2/nc_student/logger/Http.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	f, err := os.OpenFile("Http.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
 	}

@@ -1,0 +1,12 @@
+2020/01/15 20:49:53 {"time":"2020-01-15T20:49:53.6880256+07:00","id":"","remote_ip":"::1","host":"localhost:9090","method":"PATCH","uri":"/api/student/v1/public/studentWithKeywords","user_agent":"PostmanRuntime/7.21.0","status":400,"error":"","latency":986000,"latency_human":"986µs","bytes_in":35,"bytes_out":33}
+
+2020/01/15 20:50:15 {"time":"2020-01-15T20:50:15.0576792+07:00","id":"","remote_ip":"::1","host":"localhost:9090","method":"PATCH","uri":"/api/student/v1/public/studentWithKeywords","user_agent":"PostmanRuntime/7.21.0","status":400,"error":"","latency":0,"latency_human":"0s","bytes_in":35,"bytes_out":33}
+
+2020/01/15 20:50:49 {"time":"2020-01-15T20:50:49.6977933+07:00","id":"","remote_ip":"::1","host":"localhost:9090","method":"PATCH","uri":"/api/student/v1/public/studentWithKeywords","user_agent":"PostmanRuntime/7.21.0","status":400,"error":"","latency":0,"latency_human":"0s","bytes_in":35,"bytes_out":33}
+
+2020/01/15 20:54:21 {"time":"2020-01-15T20:54:21.0790685+07:00","id":"","remote_ip":"::1","host":"localhost:9090","method":"PATCH","uri":"/api/student/v1/public/studentWithKeywords","user_agent":"PostmanRuntime/7.21.0","status":400,"error":"","latency":1000700,"latency_human":"1.0007ms","bytes_in":35,"bytes_out":33}
+
+2020/01/15 20:54:38 {"time":"2020-01-15T20:54:38.5905581+07:00","id":"","remote_ip":"::1","host":"localhost:9090","method":"PATCH","uri":"/api/student/v1/public/studentWithKeywords","user_agent":"PostmanRuntime/7.21.0","status":400,"error":"","latency":0,"latency_human":"0s","bytes_in":35,"bytes_out":33}
+
+2020/01/15 21:11:12 {"time":"2020-01-15T21:11:12.1733102+07:00","id":"","remote_ip":"::1","host":"localhost:9090","method":"PATCH","uri":"/api/student/v1/public/studentWithKeywords","user_agent":"PostmanRuntime/7.21.0","status":400,"error":"","latency":0,"latency_human":"0s","bytes_in":35,"bytes_out":33}
+

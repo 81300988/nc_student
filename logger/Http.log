@@ -1,8 +1,0 @@
-
-
-2020/01/15 19:28:30 {"time":"2020-01-15T19:28:30.8826163+07:00","id":"","remote_ip":"::1","host":"localhost:9090","method":"PATCH","uri":"/api/student/v1/public/studentWithKeywords","user_agent":"PostmanRuntime/7.21.0","status":200,"error":"","latency":3909600,"latency_human":"3.9096ms","bytes_in":38,"bytes_out":108}
-
-2020/01/15 19:30:22 {"time":"2020-01-15T19:30:22.1412573+07:00","id":"","remote_ip":"::1","host":"localhost:9090","method":"PATCH","uri":"/api/student/v1/public/studentWithKeywords","user_agent":"PostmanRuntime/7.21.0","status":200,"error":"","latency":1997000,"latency_human":"1.997ms","bytes_in":38,"bytes_out":108}
-
-2020/01/15 19:30:36 {"time":"2020-01-15T19:30:36.4293502+07:00","id":"","remote_ip":"::1","host":"localhost:9090","method":"PATCH","uri":"/api/student/v1/public/studentWithKeywords","user_agent":"PostmanRuntime/7.21.0","status":400,"error":"","latency":1000100,"latency_human":"1.0001ms","bytes_in":35,"bytes_out":33}
-
