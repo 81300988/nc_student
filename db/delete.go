@@ -3,6 +3,7 @@ package database
 import (
 	"context"
 	"log"
+	"time"
 
 	"gopkg.in/mgo.v2/bson"
 	"nc_student.com/v1/model"
@@ -16,8 +17,9 @@ func DeleteOneStudent(student *model.Student) (interface{}, error) {
 	// } else {
 	// 	fmt.Println("ObjectIDFromHex:", id)
 	// }
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 	filter := bson.M{"id": student.ID}
-	deleteResult, err := collection.DeleteOne(context.TODO(), filter)
+	deleteResult, err := collection.DeleteOne(ctx, filter)
 	if err != nil {
 		log.Fatal(err)
 	}

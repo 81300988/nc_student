@@ -4,11 +4,13 @@ import (
 	"context"
 	"fmt"
 	"reflect"
+	"strconv"
 	"time"
+
+	"log"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"gopkg.in/mgo.v2/bson"
-	"log"
 	"nc_student.com/v1/model"
 )
 
@@ -36,14 +38,10 @@ func GetAllStudent() ([]model.Student, error) {
 func GetStudentbyID(id string) (interface{}, error) {
 	var student model.Student
 	collection := Client.Database("homework2").Collection("student")
-	_id, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		fmt.Println("ObjectIDFromHex ERROR", err)
-	} else {
-		fmt.Println("ObjectIDFromHex:", _id)
-	}
-	filter := bson.M{"_id": _id}
-	err = collection.FindOne(context.TODO(), filter).Decode(&student)
+	_id, _ := strconv.Atoi(id)
+	filter := bson.M{"id": _id}
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	err := collection.FindOne(ctx, filter).Decode(&student)
 	if err != nil {
 		return nil, err
 	}
