@@ -34,3 +34,13 @@ func AddOneStudent(student *model.Student) (interface{}, error) {
 	return insertResult, nil
 
 }
+
+func AddLog(log *model.Log) (interface{}, error) {
+	collection := Client.Database(DbName).Collection("log")
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	insertResult, err := collection.InsertOne(ctx, log)
+	if err != nil {
+		return nil, err
+	}
+	return insertResult, nil
+}

@@ -1,6 +1,10 @@
 package model
 
-import "github.com/dgrijalva/jwt-go"
+import (
+	"time"
+
+	"github.com/dgrijalva/jwt-go"
+)
 
 type Student struct {
 	ID        int    `json:"id" bson:"id,omitempty"`
@@ -23,4 +27,12 @@ type UserClaims struct {
 type Count struct {
 	ID    int `bson:"id" json:"id"`
 	Value int `bson:"value" json:"value"`
+}
+
+type Log struct {
+	Date   time.Time `bson:"Date" json:"date"`
+	Host   string    `bson:"Host" json:"host"`
+	Path   string    `bson:"Path" json:"path"`
+	Method string    `bson:"Method" json:"method"`
+	Status int       `bson:"Status" json:"status"`
 }
